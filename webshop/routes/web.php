@@ -11,15 +11,11 @@
 |
 */
 
-<<<<<<< Updated upstream
 // Route::get('/', function () {
 //     return view('home');
 // });
+
 Route::get('/', 'IndexController@index');
-=======
-Route::get('/', function () {
-    return view('layouts/app');
-});
->>>>>>> Stashed changes
+
 
 Auth::routes();
