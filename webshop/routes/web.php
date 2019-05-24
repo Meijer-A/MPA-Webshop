@@ -17,5 +17,10 @@
 
 Route::get('/', 'IndexController@index');
 
+Route::resources([
+    'category' => 'CategoryController',
+    'posts' => 'PostController'
+]);
+
 
 Auth::routes();

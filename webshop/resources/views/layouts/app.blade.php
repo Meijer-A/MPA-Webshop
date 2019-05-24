@@ -33,8 +33,8 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        @foreach ($categories as $category)
-                            <a class="dropdown-item" href="">{{ $category->name }}</a>
+                        @foreach($categories as $category)
+                            <a class="dropdown-item" href="{{URL::to('category/' . $category->id)}}">{{ $category->name }}</a>
                         @endforeach
                     </div>
                 </div>
