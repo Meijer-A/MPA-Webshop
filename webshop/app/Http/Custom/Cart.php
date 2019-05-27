@@ -10,16 +10,19 @@ class Cart
             $this->cart = session('cart');
         }
     }
+
     public function show()
     {
         return $this->cart;
     }
+
     public function add($product, $amount)
     {
         $this->cart[$product];
         
         // session('cart') = $this->cart;
     }
+    
     public function remove($product, $amount)
     {
         // session('cart') = $this->cart;
