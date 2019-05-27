@@ -12,6 +12,7 @@ class ShoppingCartController extends Controller
     public function __construct()
     {
         $this->cart = new Cart();
+        
     }
 
     /**
@@ -21,7 +22,7 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        $CartProducts = $this->cart->show();
+        $products = $this->cart->show();
         return view('cart.index', compact('products'));
     }
 
@@ -32,7 +33,7 @@ class ShoppingCartController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
