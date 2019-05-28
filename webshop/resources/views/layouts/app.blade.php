@@ -80,8 +80,7 @@
                                 </div>
                             </li>
                         @endguest
-
-                        <a class="nav-link" href="shoppingcart">winkelmand</a>
+                        <a class="nav-link" href="{{URL::to('shoppingcart')}}">winkelmand</a>
                     </ul>
                 </div>
             </div>

@@ -23,5 +23,8 @@ Route::resources([
     'product' => 'ProductController',
 ]);
 
+// Cart
+Route::post('/shoppingcart/{id}', "ShoppingCartController@add");
+
 
 Auth::routes();

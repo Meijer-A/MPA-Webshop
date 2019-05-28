@@ -1,12 +1,15 @@
 <?php
 
-use App\Product;
-
 namespace App\Http\Custom;
+
+use App\Product;
+use Session;
 
 class Cart
 {
     private $cart = array();
+
+
 
     public function __construct()
     {
@@ -14,22 +17,23 @@ class Cart
         // session()->put('cart', $product);
 
         if (session('cart')) {
-            return session('cart');
+            $this->cart = session('cart');
         }
     }
 
     public function show()
     {
-        return $this->cart;
+        return session('cart');
     }
 
-    public function add($id)
+    public function addProduct($id)
     {
-        $product = Product::findOrFail($id);
+        array_push($this->cart, $id);
 
-        if ($product != null) {
-            session()->put('cart', $product);
-        }
+        // session('cart')->put('cart', $this->cart);
+        // Session::push('cart', $this->cart);
+        session(['cart' => $this->cart]);
+
     }
 
     public function remove($product, $amount)

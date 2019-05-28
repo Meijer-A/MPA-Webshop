@@ -23,6 +23,7 @@ class ShoppingCartController extends Controller
     public function index()
     {
         $products = $this->cart->show();
+
         return view('cart.index', compact('products'));
     }
 
@@ -33,7 +34,7 @@ class ShoppingCartController extends Controller
      */
     public function create()
     {
-    
+        
     }
 
     /**
@@ -42,11 +43,26 @@ class ShoppingCartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        $this->cart->addProduct($id);
+        
+        return view('cart.index', compact('products'));
     }
 
+    /**
+     * Store specified resource in sesssion storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function add($id)
+    {
+        $this->cart->addProduct($id);
+        
+        return view('cart.index');
+    }
+        
     /**
      * Display the specified resource.
      *

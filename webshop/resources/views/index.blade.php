@@ -16,10 +16,11 @@
                 <div class="">
                     <p class="price"><span>&#8364;</span>{{ $product->price }}</p>
                     <div class="btn-group">
-                        <a href="/product/{{ $product->id }}" class="btn btn-sm btn-outline-secondary">Detail</a>
-                        <a href="/product/{{ $product->id }}" class="btn btn-sm btn-outline-secondary">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
+                        <a href="product/{{ $product->id }}" class="btn btn-sm btn-outline-secondary">Detail</a>
+                        <form action="{{action('ShoppingCartController@add', ['id' => $product->id])}}" method="POST">    
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="fas fa-shopping-cart"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
