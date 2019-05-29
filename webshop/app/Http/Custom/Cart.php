@@ -7,7 +7,7 @@ use Session;
 
 class Cart
 {
-    private $cart = array();
+    private $cart = [];
 
 
 
@@ -28,21 +28,31 @@ class Cart
 
     public function addProduct($id)
     {
-        array_push($this->cart, $id);
+        $this->cart = session('cart');
 
-        // session('cart')->put('cart', $this->cart);
-        // Session::push('cart', $this->cart);
+        foreach ($this->cart as $item) {
+            if ($item['id'] == $id) {
+                $item['quantity']++;
+            } else if ( $item['id'] !== $id ) {
+                $quantity = 1;
+                $product = [
+                    'id' => $id,
+                    'quantity' => $quantity
+                ];
+                array_push($this->cart, $product);
+            }
+        }
+
         session(['cart' => $this->cart]);
-
     }
 
     public function remove($product, $amount)
     {
         // session('cart') = $this->cart;
     }
-    public function reset()
+
+    public function removeAll()
     {
-        $this->cart = [];
-        // session('cart') = $this->cart;
+        session('cart')->flush();
     }
 }

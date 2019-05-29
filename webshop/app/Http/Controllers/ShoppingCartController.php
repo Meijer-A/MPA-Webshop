@@ -107,4 +107,9 @@ class ShoppingCartController extends Controller
     {
         //
     }
+
+    public function destroyAll()
+    {
+        $this->cart->removeAll();
+    }
 }
