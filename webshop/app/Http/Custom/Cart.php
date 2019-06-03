@@ -69,25 +69,17 @@ class Cart
     public function delete($id)
     {
         if (Product::find($id) !== null) {
-            $newProduct = true;
 
             if (session::has('cart')) {
+
                 $this->cart = session('cart');
+
                 foreach ($this->cart as $key => $product) {
                     if ($product['id'] == $id) {
-                        $newProduct = false;
-                        $this->cart[$key]['quantity']++;       
+                        array_splice($this->cart, $key, 1);
                     } 
                 }
             } 
-        }
-
-        if ($newProduct === true) {
-            $product = array(
-                'id' => $id,
-                'quantity' => 1
-            );
-            array_push($this->cart, $product);
         }
 
         session(['cart' => $this->cart]);

@@ -106,7 +106,8 @@ class ShoppingCartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->cart->delete($id);
+        return redirect()->route('shoppingcart.index');
     }
 
     public function destroyAll()
