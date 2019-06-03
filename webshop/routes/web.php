@@ -25,6 +25,5 @@ Route::resources([
 
 // Cart
 Route::post('shoppingcart/{id}', "ShoppingCartController@add");
-Route::get('shoppingcart/remove', "ShoppingCartController@destroyAll");
 
 Auth::routes();

@@ -4,17 +4,6 @@
 <div class="container">
     <h1 class="pt-5 pb-3">Winkelwagen</h1>
     @if (Session::has('cart'))
-        <a href="/shoppingcart/remove" class="btn btn-sm btn-outline-secondary">Verwijder alles</a>
-        <!-- <table class="table">
-            <tbody>
-            @foreach(Session::get('cart') as $product)
-            <tr>
-                <td>{{ $product['id'] }}</td>
-                <td>{{ $product['quantity'] }}</td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table> -->
         <table class="table mt-5">
             <tbody>
             @foreach($products as $product)
@@ -23,6 +12,13 @@
                 <td>{{ $product->name }}</td>
                 <td><input type="number" value="{{ $product->quantity }}"></td>
                 <td>{{ $product->price }}</td>
+                <td>
+                    <form action="{{ action('ShoppingCartController@destroy', ['id' => $product->id]) }}" method="POST">    
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" >Verwijderen</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
             </tbody>
