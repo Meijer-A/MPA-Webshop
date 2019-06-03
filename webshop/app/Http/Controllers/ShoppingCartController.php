@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Custom\cart;
+use Session;
 
 class ShoppingCartController extends Controller
 {
@@ -23,7 +24,6 @@ class ShoppingCartController extends Controller
     public function index()
     {
         $products = $this->cart->show();
-
         return view('cart.index', compact('products'));
     }
 
@@ -43,12 +43,12 @@ class ShoppingCartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
-    {
-        $this->cart->addProduct($id);
+    // public function store($id)
+    // {
+    //     $this->cart->addProduct($id);
         
-        return view('cart.index', compact('products'));
-    }
+    //     return view('cart.index', compact('products'));
+    // }
 
     /**
      * Store specified resource in sesssion storage.
@@ -59,8 +59,9 @@ class ShoppingCartController extends Controller
     public function add($id)
     {
         $this->cart->addProduct($id);
-        
-        return view('cart.index');
+        $products = $this->cart->show();
+        return view('cart.index', compact('products'));
+        // return redirect()->route('shoppingcart.index');
     }
         
     /**
@@ -109,7 +110,9 @@ class ShoppingCartController extends Controller
     }
 
     public function destroyAll()
-    {
-        $this->cart->removeAll();
+    {  
+        $this->cart->show();
+
+        // return redirect()->route('shoppingcart.index');
     }
 }

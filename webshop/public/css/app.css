@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+body {
+  background-color: #ffffff !important;
+}
+
 main {
   margin: 0 25px;
 }
@@ -28,6 +32,22 @@ main .main-text h1 {
 
 .product .product-info .product-name {
   padding: 10px 0;
+}
+
+.table tr {
+  background-color: #ffffff;
+  height: 100px;
+}
+
+.table tr td:first-child {
+  width: 175px;
+}
+
+.table tr img {
+  height: 100px;
+  width: 175px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /*!
