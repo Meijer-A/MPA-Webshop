@@ -8,10 +8,10 @@
             <tbody>
             @foreach($products as $product)
             <tr>
-                <td><img src="../img/{{ $product->image }}" alt="{{ $product->name }}"></td>
+                <td><img src="img/{{ $product->image }}" alt="{{ $product->name }}"></td>
                 <td>{{ $product->name }}</td>
-                <td><input type="number" value="{{ $product->quantity }}"></td>
-                <td>{{ $product->price }}</td>
+                <td><input type="number" value="{{ $product->quantity }}" id="quantity-{{$product->id}}"></td>
+                <td><span>&#8364;</span> {{ $product->price }}</td>
                 <td>
                     <form action="{{ action('ShoppingCartController@destroy', ['id' => $product->id]) }}" method="POST">    
                         @method('DELETE')
@@ -21,6 +21,13 @@
                 </td>
             </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span>&#8364;</span> {{ $totalprice }}</td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     @else

@@ -8,6 +8,7 @@ use Session;
 class Cart
 {
     public $cart = [];
+    public $totalprice;
 
     public function __construct()
     {
@@ -28,6 +29,8 @@ class Cart
             foreach (session('cart') as $item) {
                 $product = Product::find($item['id']);
                 $product->quantity = $item['quantity']; 
+
+                $this->totalprice += ($product->price * $product->quantity);
                 array_push($products, $product);
             }
             return $products;
@@ -81,12 +84,15 @@ class Cart
                 }
             } 
         }
-
-        session(['cart' => $this->cart]);
+        if (count($this->cart) === 0) {
+            session()->forget('cart');
+        } else {
+            session(['cart' => $this->cart]);
+        }
     }
 
-    public function emptySession()
+    public function changeQuantity($id, $quantity) 
     {
-        session('cart')->flush();
+
     }
 }

@@ -12,7 +12,7 @@
 		<h1 class="product-title">{{ $product->name }}</h1>
 		<p class="product-desc">{{ $product->description }}</p>
 		<hr>
-		<p class="product-price">{{ $product->price }}</p>
+		<p class="product-price"><span>&#8364;</span> {{ $product->price }}</p>
 		<div class="product-stock">In Stock</div>
 		<hr>
 		<div class="btn-group cart">

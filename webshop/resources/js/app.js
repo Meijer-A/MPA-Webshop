@@ -31,3 +31,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app'
 });
+
+
+$( "input[id^='quantity-']" ).change(function() {
+    console.log(this);
+    var id = this.id.replace(/quantity-/, "");
+
+    
+    console.log(id);
+
+});
+
+

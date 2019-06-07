@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Custom\cart;
 use Session;
@@ -24,7 +25,10 @@ class ShoppingCartController extends Controller
     public function index()
     {
         $products = $this->cart->show();
-        return view('cart.index', compact('products'));
+        $totalprice = $this->cart->totalprice;
+        $user = Auth::user();
+        var_dump($user);
+        return view('cart.index', ['totalprice'  => $totalprice, 'products' => $products]);
     }
 
     /**
@@ -60,8 +64,11 @@ class ShoppingCartController extends Controller
     {
         $this->cart->addProduct($id);
         $products = $this->cart->show();
-        return view('cart.index', compact('products'));
-        // return redirect()->route('shoppingcart.index');
+
+        $user = Auth::user();
+        var_dump($user);
+
+        return redirect()->route('shoppingcart.index');
     }
         
     /**
