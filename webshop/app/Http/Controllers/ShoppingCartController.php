@@ -65,6 +65,18 @@ class ShoppingCartController extends Controller
     }
         
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changeQuantity(Request $request)
+    {
+        // $this->cart->changeQuantity($request->id, $request->quantity);
+        return "test";
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -83,19 +95,18 @@ class ShoppingCartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->cart->changeQuantity($request->id, $request->quantity);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+       return 'whoep';
     }
 
     /**
@@ -108,12 +119,5 @@ class ShoppingCartController extends Controller
     {
         $this->cart->delete($id);
         return redirect()->route('shoppingcart.index');
-    }
-
-    public function destroyAll()
-    {  
-        $this->cart->show();
-
-        // return redirect()->route('shoppingcart.index');
     }
 }

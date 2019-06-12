@@ -10,8 +10,15 @@
             <tr>
                 <td><img src="img/{{ $product->image }}" alt="{{ $product->name }}"></td>
                 <td>{{ $product->name }}</td>
-                <td><input type="number" value="{{ $product->quantity }}" id="quantity-{{$product->id}}"></td>
+                <td><input type="number" min="0" value="{{ $product->quantity }}" id="quantity-{{$product->id}}"></td>
                 <td><span>&#8364;</span> {{ $product->price }}</td>
+                <td>
+                    <form action="{{ action('ShoppingCartController@destroy', ['id' => $product->id]) }}" method="POST">    
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" >Verwijderen</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
             <tr>

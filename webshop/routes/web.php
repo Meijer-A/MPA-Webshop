@@ -10,11 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
 Route::get('/', 'IndexController@index');
 
 Route::resources([
@@ -25,6 +20,8 @@ Route::resources([
 ]);
 
 // Cart
+Route::get('/shoppingcart/update', "ShoppingCartController@update");
 Route::post('shoppingcart/{id}', "ShoppingCartController@add");
+Route::post('shoppingcart/change', "ShoppingCartController@changeQuantity");
 
 Auth::routes();
