@@ -14,11 +14,20 @@ class CreateOrderProductsTable extends Migration
     public function up()
     {
         Schema::create('order_products', function (Blueprint $table) {
-            $table->integer('order_id');
-            $table->integer('product_id');
+
+            
+            $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
+
             $table->integer('quantity');
+
             $table->decimal('price', 8, 2);
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_id')->references('id')->on('products');
+
+            $table->primary(['order_id', 'product_id']);
         });
     }
 

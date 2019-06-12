@@ -21,6 +21,7 @@ Route::resources([
     'category' => 'CategoryController',
     'shoppingcart' => 'ShoppingCartController',
     'product' => 'ProductController',
+    'order' => 'OrderController',
 ]);
 
 // Cart

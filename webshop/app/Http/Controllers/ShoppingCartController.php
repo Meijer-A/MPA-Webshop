@@ -14,7 +14,6 @@ class ShoppingCartController extends Controller
     public function __construct()
     {
         $this->cart = new Cart();
-        
     }
 
     /**
@@ -26,8 +25,6 @@ class ShoppingCartController extends Controller
     {
         $products = $this->cart->show();
         $totalprice = $this->cart->totalprice;
-        $user = Auth::user();
-        var_dump($user);
         return view('cart.index', ['totalprice'  => $totalprice, 'products' => $products]);
     }
 
@@ -63,11 +60,7 @@ class ShoppingCartController extends Controller
     public function add($id)
     {
         $this->cart->addProduct($id);
-        $products = $this->cart->show();
-
-        $user = Auth::user();
-        var_dump($user);
-
+        $products = $this->cart->show(); 
         return redirect()->route('shoppingcart.index');
     }
         

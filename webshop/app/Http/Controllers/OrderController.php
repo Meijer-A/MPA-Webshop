@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Custom\cart;
+use Session;
 
 class OrderController extends Controller
 {
+    public $cart;
+
+    public function __construct()
+    {
+        $this->cart = new Cart();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::check()) {
+            $user = Auth::user();
+            $products = $this->cart->show();
+            $totalprice = $this->cart->totalprice;
+            
+            return view('order.index', ['totalprice'  => $totalprice, 'products' => $products, 'user' =>  $user]);
+        } else {
+            // return redirect()->route('auth.login');
+            return "je bent niet ingelogd kut!!";
+        }
     }
 
     /**
@@ -24,7 +43,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return 'create';
     }
 
     /**
@@ -35,7 +54,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'HAKAKAKAKAKAKAAKA';
     }
 
     /**
