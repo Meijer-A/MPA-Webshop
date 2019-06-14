@@ -72,8 +72,7 @@ class ShoppingCartController extends Controller
      */
     public function changeQuantity(Request $request)
     {
-        // $this->cart->changeQuantity($request->id, $request->quantity);
-        return "test";
+        $this->cart->changeQuantity($request->id, $request->quantity);
     }
 
     /**

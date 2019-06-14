@@ -49,15 +49,16 @@ class Cart
                     }
                 }
             } 
+            
+            if ($newProduct === true) {
+                $product = array(
+                    'id' => $id,
+                    'quantity' => 1
+                );
+                array_push($this->cart, $product);
+            }
         }
 
-        if ($newProduct === true) {
-            $product = array(
-                'id' => $id,
-                'quantity' => 1
-            );
-            array_push($this->cart, $product);
-        }
 
         session(['cart' => $this->cart]);
     }

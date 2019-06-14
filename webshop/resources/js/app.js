@@ -34,38 +34,37 @@ const app = new Vue({
 
 
 $( "input[id^='quantity-']" ).change(function() {
+
+    console.log('CHANGE!!');
     var id = this.id.replace(/quantity-/, "");
     var quantity = $(this).val();
 
-        // if($(this).val() <= 0){
-        //     $.ajax({
-        //         method: 'POST',
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }, 
-        //         url: '/shoppingcart/destroy',
-        //         data: {
-        //             'id' : id, 
-        //         }
-        //     }).done(function(){
-        //         window.location = window.location;
-        //     });
-        // } else {   
+        if($(this).val() <= 0){
             $.ajax({
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }, 
-                url: 'shoppingcart/change', 
+                url: '/shoppingcart/destroy',
+                data: {
+                    'id' : id, 
+                }
+            }).done(function(){
+                window.location = window.location;
+            });
+        } else {   
+            $.ajax({
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }, 
+                url: '/shoppingcart/change', 
                 data: {
                     'id' : id, 
                     'quantity' : quantity
                 }
-            }).done(function(){
-                console.log('yes');
-                console.log(quantity);
-                // window.location = window.location;
+            }).done(function(data){
+                window.location = window.location;
             });
-        // }
-        
+        }
 });    

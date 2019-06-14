@@ -14,14 +14,15 @@ Route::get('/', 'IndexController@index');
 
 Route::resources([
     'category' => 'CategoryController',
-    'shoppingcart' => 'ShoppingCartController',
     'product' => 'ProductController',
     'order' => 'OrderController',
 ]);
 
 // Cart
+Route::get('/shoppingcart', "ShoppingCartController@index")->name('shoppingcart.index');
 Route::get('/shoppingcart/update', "ShoppingCartController@update");
-Route::post('shoppingcart/{id}', "ShoppingCartController@add");
-Route::post('shoppingcart/change', "ShoppingCartController@changeQuantity");
+Route::post('/shoppingcart/change', "ShoppingCartController@changeQuantity");
+Route::post('/shoppingcart/{id}', "ShoppingCartController@add");
+Route::delete('/shoppingcart/{id}', "ShoppingCartController@destroy");
 
 Auth::routes();
