@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Custom\cart;
@@ -43,7 +44,26 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return 'create';
+        $user = Auth::user();
+
+        $products = $this->cart->show();
+        $total_price = $this->cart->totalprice;
+        $order = new Order();
+        $order->user_id = $user->id;
+        $order->total_price = 0;
+        $order->save();
+        foreach($products as $product) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->order_id = $order->id;
+            $orderProduct->product_id = $product->id;
+            $orderProduct->quantity = $product->quantity;
+            $orderProduct->total_price = $product->price * $product->quantity;
+            $order->total_price += $orderProduct->total_price;
+            $orderProduct->save();
+        }
+        $order->save();
+        $this->cart->emptyCart();
+        return redirect('/');
     }
 
     /**
@@ -54,7 +74,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return 'HAKAKAKAKAKAKAAKA';
     }
 
     /**
@@ -66,6 +85,13 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         //
+    }
+
+    public function showOrder() 
+    {
+        $user = auth()->user();
+        $orders = $user->orders; 
+        return view("order.show", ['orders' => $orders]);
     }
 
     /**

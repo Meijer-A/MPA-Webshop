@@ -25,4 +25,7 @@ Route::post('/shoppingcart/change', "ShoppingCartController@changeQuantity");
 Route::post('/shoppingcart/{id}', "ShoppingCartController@add");
 Route::delete('/shoppingcart/{id}', "ShoppingCartController@destroy");
 
+// Order
+Route::get('/showorder', "OrderController@showOrder");
+
 Auth::routes();

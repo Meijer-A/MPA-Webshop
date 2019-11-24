@@ -36,13 +36,9 @@
                     <p>Email: {{$user->email }} </p>
                 </div>
             </div>
-            <form action="{{action('OrderController@store')}}" method="POST">    
-				@csrf
-				<button type="button" class="btn btn-outline-success">Bestelling afronden</button>
-			</form>
-            <form action="{{action('OrderController@create')}}" method="POST">    
+            <form action="{{action('OrderController@create')}}" method="PUT">
                 @csrf
-                <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="fas fa-shopping-cart"></i></button>
+                <button type="submit" class="btn btn-outline-success">Bestelling afronden</button>
             </form>
         </div>
     </div>

@@ -101,4 +101,9 @@ class Cart
 
         session(['cart' => $this->cart]);
     }
+
+    public function emptyCart()
+    {
+        session()->forget('cart');
+    }
 }
