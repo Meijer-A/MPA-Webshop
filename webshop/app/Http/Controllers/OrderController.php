@@ -33,7 +33,7 @@ class OrderController extends Controller
             return view('order.index', ['totalprice'  => $totalprice, 'products' => $products, 'user' =>  $user]);
         } else {
             // return redirect()->route('auth.login');
-            return "je bent niet ingelogd kut!!";
+            return "Je moet eerst inloggen voordat je kan bestellen";
         }
     }
 

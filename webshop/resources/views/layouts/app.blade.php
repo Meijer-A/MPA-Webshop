@@ -68,7 +68,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{URL::to('showorder/')}}">
+                                    <a class="dropdown-item" href="{{URL::to('showorder/')}}">
                                         Bestellingen
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
